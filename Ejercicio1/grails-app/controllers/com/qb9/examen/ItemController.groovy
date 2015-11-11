@@ -1,7 +1,7 @@
 package com.qb9.examen
 
 
-
+import grails.plugin.springsecurity.annotation.Secured
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -9,21 +9,23 @@ import grails.transaction.Transactional
 class ItemController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+	@Secured(['ROLE_ADMIN'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Item.list(params), model:[itemInstanceCount: Item.count()]
     }
-
+	
+	@Secured(['ROLE_ADMIN'])
     def show(Item itemInstance) {
         respond itemInstance
     }
-
+	@Secured(['ROLE_ADMIN'])
     def create() {
         respond new Item(params)
     }
 
     @Transactional
+	@Secured(['ROLE_ADMIN'])
     def save(Item itemInstance) {
         if (itemInstance == null) {
             notFound()
@@ -45,12 +47,13 @@ class ItemController {
             '*' { respond itemInstance, [status: CREATED] }
         }
     }
-
+	@Secured(['ROLE_ADMIN'])
     def edit(Item itemInstance) {
         respond itemInstance
     }
 
     @Transactional
+	@Secured(['ROLE_ADMIN'])
     def update(Item itemInstance) {
         if (itemInstance == null) {
             notFound()
@@ -74,6 +77,7 @@ class ItemController {
     }
 
     @Transactional
+	@Secured(['ROLE_ADMIN'])
     def delete(Item itemInstance) {
 
         if (itemInstance == null) {
