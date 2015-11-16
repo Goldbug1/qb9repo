@@ -1,0 +1,110 @@
+GGTS. es un toolkit para desarrollar en el eclipse.
+
+Desarrollar un servidor para operaciones CRUD (Create, Read, Update, Delete) sobre
+un listado de items.
+El servidor debe permitir, a través de una interfaz que se accede vía web, listar
+elementos, modificarlos y eliminarlos.
+Se debe usar el framework Grails, y los datos se pueden persistir en una base de
+datos en memoria, teniendo una muestra de datos iniciales que se insertan al iniciar el
+servidor.
+Se espera las siguientes pantallas:
+? Login: con un manejo claro de errores en caso de usuario o contraseña incorrecta.
+? Listado de items: mostrar una lista mostrando principalmente el nombre del item y
+las acciones que se pueden hacer sobre el mismo (borrar y modificar)
+? Modificación de item: Pantalla de detalle de item, permitiendo modificar sus campos
+y validando correctamente si algunos de los datos es inválido.
+? Confirmar eliminación: Al querer eliminar un item, mostrar una pantalla de
+validación, permitiendo confirmar o cancelar esa operación.
+
+
+Este es un ejemplo atravez de como usar grails http://www.syger.it/Tutorials/GrailsWebAlbum.html
+
+me baje la ultima version de grail https://grails.org/download.html
+
+https://grails.org/wiki/Installation
+
+al hacer tipear "grails" desde la consola me arroja 
+C:\Users\Administrador>grails
+Exception in thread "main" java.lang.UnsupportedClassVersionError: org/grails/cli/GrailsCli : Unsupported major.minor version 51.0
+        at java.lang.ClassLoader.defineClass1(Native Method)
+        at java.lang.ClassLoader.defineClassCond(ClassLoader.java:631)
+        at java.lang.ClassLoader.defineClass(ClassLoader.java:615)
+        at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:141)
+        at java.net.URLClassLoader.defineClass(URLClassLoader.java:283)
+        at java.net.URLClassLoader.access$000(URLClassLoader.java:58)
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:197)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:190)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:301)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+Could not find the main class: org.grails.cli.GrailsCli.  Program will exit.
+
+es un problema de version con el jre q tengo instalado.
+Java 1.8.0 is not supported for this version.
+
+La posta es que no se hace con el eclipse .sino que es otro ide  . GGTS  
+http://spring.io/tools/sts
+http://grails.asia/grails-tutorial-for-beginners-setup-your-windows-development-environment/
+
+baje cualquier cosa , la posta es http://spring.io/tools/ggts/
+
+mientras baja el ggts , voy instalando en git para ir vesionando
+
+usuario goldbug1 pass tavosavila2015
+cree el repo 
+https://github.com/Goldbug1/qb9repo.git
+
+Listo entorno , ya levante el http://localhost:8080/sample XD
+
+As you can see, this is the normal routing for Grails applications "http://localhost:8080/context/controller/action". You don't have to configure anything as this is the default behavior. If you want for example to have a URL like "http://localhost:8080/sample/blog/view", then you need to create a controller named "Blog" and create a method "View". Note that controller's methods are also called actions. 
+
+
+http://hat.hexacta.com/aplicando-seguridad-a-grails-parte-1/
+
+lo mejor es utilizar Static Scaffolding , ya que grails viene 
+
+https://grails.github.io/grails-doc/3.0.x/guide/single.html#scaffolding
+
+Como puedo utilizar el plugin , ya esta creaod el CRUD . 
+
+Autenticacion
+
+https://grails.github.io/grails-doc/3.0.x/guide/single.html#authentication
+
+https://www.youtube.com/watch?v=auwML_bsUEE
+
+http://spring.io/blog/2010/08/11/simplified-spring-security-with-grails/
+
+http://stackoverflow.com/questions/20975517/script-s2quickstart-not-found-when-adding-spring-security-plugin
+
+listo login!!!!!
+este link me sirvio 
+http://paraisodeldesarrollador.blogspot.com.ar/2015/03/configurar-spring-security-core-plugin.html
+
+Ahora me logueo , pero me dice 
+Sorry, you're not authorized to view this page.
+
+https://grails-plugins.github.io/grails-spring-security-core/guide/single.html#configGroovyMap
+
+agrege los permisos para que el usuario admin pueda hacer CRUD . 
+Quiero agregar el logoff
+http://jhtechservices.com/2014/07/grails-spring-security-plugin-adding-a-logout-link/
+
+tengo que solucionar el error del startup
+[localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "USER_ROLE" not found; SQL statement:
+alter table user_role drop constraint FK_it77eq964jhfqtu54081ebtio if exists [42102-173]
+
+tuve que crear un clase groovy ImprovedH2Dialect para solucionar el problema . En este post encontre la solucion
+http://stackoverflow.com/questions/23872473/grails-spring-security-plugin-rc3-shows-error-about-table-creation-in-developme
+
+Ok funciono
+
+
+TODO : Resta agregar mas comentarios . Agregar los roles a el usuario USER y parametrizar por medio de una base de datos.
+TODO : elimanar visualmete los botones del usuario sin permisos.
+TODO : armar test.
+
+
+
+
